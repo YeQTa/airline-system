@@ -28,8 +28,8 @@ class FlightTest {
         assertEquals(1L, flight.getId());
         assertEquals(150, flight.getCapasity());
         assertEquals(new BigDecimal(200), flight.getPrice());
-        assertNotNull(flight.getFlightTime());
-        assertTrue(flight.getEstimatedArrivalTime().isAfter(flight.getFlightTime()));
+        assertNotNull(flight.getFlightDate());
+        assertTrue(flight.getEstimatedArrivalTime().isAfter(flight.getFlightDate()));
         assertNotNull(flight.getRoute());
         assertEquals("SAW", flight.getRoute().getDeparturePlace().getIcaoCode());
     }

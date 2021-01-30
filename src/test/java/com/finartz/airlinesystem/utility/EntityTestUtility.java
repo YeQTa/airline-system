@@ -1,11 +1,15 @@
 package com.finartz.airlinesystem.utility;
 
+import com.finartz.airlinesystem.entity.Airline;
 import com.finartz.airlinesystem.entity.Airport;
 import com.finartz.airlinesystem.entity.Flight;
 import com.finartz.airlinesystem.entity.Route;
+import com.finartz.airlinesystem.entity.Ticket;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.UUID;
+
 
 /**
  * @author : Yekta Anil AKSOY
@@ -13,7 +17,8 @@ import java.time.LocalTime;
  **/
 public final class EntityTestUtility {
 
-    private final static LocalDateTime now = LocalDateTime.now();
+    public final static LocalDateTime now = LocalDateTime.now();
+    public final static UUID ticketCode = UUID.randomUUID();
 
     public static Airport getAirport() {
         Airport airport = new Airport();
@@ -54,8 +59,31 @@ public final class EntityTestUtility {
         flight.setId(1L);
         flight.setCapasity(150);
         flight.setPrice(new BigDecimal(200));
-        flight.setFlightTime(now);
+        flight.setFlightDate(now);
         flight.setRoute(getRoute());
+        flight.setStatus(1);
+        flight.setCreateDate(now);
+        flight.setAirline(getAirline());
         return flight;
+    }
+
+    public static Airline getAirline() {
+        Airline airline = new Airline();
+        airline.setId(1L);
+        airline.setName("Pegasus Hava Yolları");
+        airline.setStatus(1);
+        airline.setCreateDate(now);
+        return airline;
+    }
+
+    public static Ticket getTicket() {
+        Ticket ticket = new Ticket();
+        ticket.setId(1L);
+        ticket.setAmount(new BigDecimal(220));
+        ticket.setTicketCode(ticketCode);
+        ticket.setCreditCard("1234567890123456");
+        ticket.setTicketStatus(TicketStatus.SOLD);
+        ticket.setFlight(getFlight());
+        return ticket;
     }
 }

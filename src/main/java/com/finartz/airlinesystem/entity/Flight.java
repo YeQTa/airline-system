@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,25 +47,29 @@ public class Flight extends BaseEntity {
     private BigDecimal price;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-    @Column(name = "FlightTime")
+    @Column(name = "FlightDate")
     @NotNull
-    private LocalDateTime flightTime;
+    private LocalDateTime flightDate;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     @Column(name = "EstimatedArrivalTime")
     private LocalDateTime estimatedArrivalTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Id")
+    @ManyToOne
+    @JoinColumn(name = "RouteId", referencedColumnName = "Id", nullable = false)
     @Setter(AccessLevel.NONE)
     private Route route;
+
+    @ManyToOne
+    @JoinColumn(name = "AirlineId", referencedColumnName = "Id", nullable = false)
+    private Airline airline;
 
     public void setRoute(Route route) {
         this.route = route;
         if (route != null && route.getFlyingTime() != null) {
             final LocalTime flyingTime = route.getFlyingTime();
             setEstimatedArrivalTime(
-                    flightTime.plusHours(flyingTime.getHour()).plusMinutes(flyingTime.getMinute()));
+                    flightDate.plusHours(flyingTime.getHour()).plusMinutes(flyingTime.getMinute()));
         }
     }
 }
