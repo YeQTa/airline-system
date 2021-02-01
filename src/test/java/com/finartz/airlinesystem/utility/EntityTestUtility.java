@@ -84,6 +84,9 @@ public final class EntityTestUtility {
         ticket.setCreditCard("1234567890123456");
         ticket.setTicketStatus(TicketStatus.SOLD);
         ticket.setFlight(getFlight());
+        ticket.setStatus(1);
+        ticket.setTicketStatus(TicketStatus.SOLD);
+        ticket.setCreateDate(now);
         return ticket;
     }
 }

@@ -1,7 +1,10 @@
 package com.finartz.airlinesystem.entity;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import com.finartz.airlinesystem.utility.EntityTestUtility;
+import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -17,8 +20,13 @@ class TicketTest {
         assertNotNull(ticket);
     }
 
-    /*@Test
+    @Test
     void testTicketSettersAndGetters() {
         Ticket ticket = EntityTestUtility.getTicket();
-    }*/
+
+        assertEquals(1L, ticket.getId());
+        assertEquals("1234567890123456", ticket.getCreditCard());
+        assertEquals(0, new BigDecimal(220).compareTo(ticket.getAmount()));
+        assertEquals(EntityTestUtility.ticketCode, ticket.getTicketCode());
+    }
 }

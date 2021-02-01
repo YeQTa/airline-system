@@ -5,5 +5,5 @@ package com.finartz.airlinesystem.utility;
  * @since : 31.01.2021
  **/
 public enum TicketStatus {
-    SOLD, RETURNED,
+    SOLD, RETURNED
 }
