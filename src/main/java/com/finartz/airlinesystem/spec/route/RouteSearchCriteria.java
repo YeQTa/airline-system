@@ -16,6 +16,6 @@ public class RouteSearchCriteria {
 
     private Long id;
     private Integer status;
-    private String departureIcao;
-    private String destinationIcao;
+    private Long departurePlace;
+    private Long destinationPlace;
 }

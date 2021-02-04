@@ -63,8 +63,8 @@ class FlightRepositoryTest {
         FlightSearchCriteria flightSearchCriteria = new FlightSearchCriteria();
         flightSearchCriteria.setId(1L);
         flightSearchCriteria.setFlightDate(EntityTestUtility.now);
-        flightSearchCriteria.setDepartureCity("istanbul");
-        flightSearchCriteria.setDestinationCity("trabzon");
+        flightSearchCriteria.setDeparturePlace("istanbul");
+        flightSearchCriteria.setDestinationPlace("trabzon");
         flightSearchCriteria.setStatus(1);
 
         Specification<Flight> flightSpecs = FlightSpecs.findFlightByCriterias(flightSearchCriteria);

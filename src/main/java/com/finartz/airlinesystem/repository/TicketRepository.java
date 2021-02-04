@@ -1,9 +1,14 @@
 package com.finartz.airlinesystem.repository;
 
+import com.finartz.airlinesystem.dto.ticket.TicketPriceDTO;
 import com.finartz.airlinesystem.entity.Ticket;
+import com.finartz.airlinesystem.utility.TicketStatus;
+import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  * @author : Yekta Anil AKSOY
@@ -12,5 +17,13 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface TicketRepository extends JpaRepository<Ticket, Long>,
         JpaSpecificationExecutor<Ticket> {
 
-    Ticket findTicketByTicketCode(UUID ticketCode);
+    Optional<Ticket> findTicketByTicketCode(UUID ticketCode);
+
+    @Query("select new com.finartz.airlinesystem.dto.ticket.TicketPriceDTO(count(t),f.capacity,f.price) from Ticket t inner join Flight f on t.flight.id = f.id where f.id = :flightId and t.ticketStatus = :ticketStatus")
+    TicketPriceDTO findPrizeInfo(@Param("flightId") Long flightId,
+            @Param("ticketStatus") TicketStatus ticketStatus);
+
+    @Query("SELECT CASE WHEN COUNT(t) >= f.capacity THEN true ELSE false END FROM Ticket t inner join Flight f on t.flight.id = f.id where f.id = :flightId and t.ticketStatus = :ticketStatus")
+    Boolean isCapacityFull(@Param("flightId") Long flightId,
+            @Param("ticketStatus") TicketStatus ticketStatus);
 }

@@ -18,4 +18,5 @@ public class AirportServiceOutput {
     private String name;
     private String icaoCode;
     private String city;
+    private String status;
 }

@@ -30,15 +30,15 @@ public class RouteSpecs {
                 predicates.add(criteriaBuilder
                         .equal(root.get("status"), routeSearchCriteria.getStatus()));
             }
-            if (routeSearchCriteria.getDepartureIcao() != null) {
+            if (routeSearchCriteria.getDeparturePlace() != null) {
                 predicates.add(criteriaBuilder
-                        .equal(root.<Airport>get("departurePlace").<String>get("icaoCode"),
-                                routeSearchCriteria.getDepartureIcao()));
+                        .equal(root.<Airport>get("departurePlace").<Long>get("id"),
+                                routeSearchCriteria.getDeparturePlace()));
             }
-            if (routeSearchCriteria.getDestinationIcao() != null) {
+            if (routeSearchCriteria.getDestinationPlace() != null) {
                 predicates.add(criteriaBuilder
-                        .equal(root.<Airport>get("destinationPlace").<String>get("icaoCode"),
-                                routeSearchCriteria.getDestinationIcao()));
+                        .equal(root.<Airport>get("destinationPlace").<Long>get("id"),
+                                routeSearchCriteria.getDestinationPlace()));
             }
             return criteriaBuilder.and(predicates.toArray(new Predicate[]{}));
         };

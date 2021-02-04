@@ -38,9 +38,9 @@ public class Flight extends BaseEntity {
     @Column(name = "Id", unique = true, updatable = false)
     private Long id;
 
-    @Column(name = "Capasity")
+    @Column(name = "Capacity")
     @NotNull
-    private Integer capasity;
+    private Integer capacity;
 
     @Column(name = "Price")
     @NotNull
@@ -56,12 +56,12 @@ public class Flight extends BaseEntity {
     private LocalDateTime estimatedArrivalTime;
 
     @ManyToOne
-    @JoinColumn(name = "RouteId", referencedColumnName = "Id", nullable = false)
+    @JoinColumn(name = "RouteFK", referencedColumnName = "Id", nullable = false)
     @Setter(AccessLevel.NONE)
     private Route route;
 
     @ManyToOne
-    @JoinColumn(name = "AirlineId", referencedColumnName = "Id", nullable = false)
+    @JoinColumn(name = "AirlineFK", referencedColumnName = "Id", nullable = false)
     private Airline airline;
 
     public void setRoute(Route route) {

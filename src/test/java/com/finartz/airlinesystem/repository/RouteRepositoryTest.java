@@ -54,9 +54,9 @@ class RouteRepositoryTest {
 
         RouteSearchCriteria routeSearchCriteria = new RouteSearchCriteria();
         routeSearchCriteria.setId(1L);
-        routeSearchCriteria.setDepartureIcao(EntityTestUtility.getAirport().getIcaoCode());
+        routeSearchCriteria.setDeparturePlace(EntityTestUtility.getAirport().getId());
         routeSearchCriteria
-                .setDestinationIcao(EntityTestUtility.getDestinationAirport().getIcaoCode());
+                .setDestinationPlace(EntityTestUtility.getDestinationAirport().getId());
         routeSearchCriteria.setStatus(1);
 
         Specification<Route> routeSpecs = RouteSpecs.findRouteByCriterias(routeSearchCriteria);

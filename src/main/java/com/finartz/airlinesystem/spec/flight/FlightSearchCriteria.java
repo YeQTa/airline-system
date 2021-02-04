@@ -18,6 +18,6 @@ public class FlightSearchCriteria {
     private Long id;
     private Integer status;
     private LocalDateTime flightDate;
-    private String departureCity;
-    private String destinationCity;
+    private String departurePlace;
+    private String destinationPlace;
 }

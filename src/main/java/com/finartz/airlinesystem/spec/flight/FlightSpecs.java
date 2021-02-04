@@ -33,18 +33,18 @@ public class FlightSpecs {
                 predicates.add(criteriaBuilder
                         .equal(root.get("flightDate"), flightSearchCriteria.getFlightDate()));
             }
-            if (flightSearchCriteria.getDepartureCity() != null) {
+            if (flightSearchCriteria.getDeparturePlace() != null) {
                 predicates.add(criteriaBuilder
                         .equal(root.<Route>get("route").<Airport>get("departurePlace").<String>get(
                                 "city"),
-                                flightSearchCriteria.getDepartureCity()));
+                                flightSearchCriteria.getDeparturePlace()));
             }
-            if (flightSearchCriteria.getDestinationCity() != null) {
+            if (flightSearchCriteria.getDestinationPlace() != null) {
                 predicates.add(criteriaBuilder
                         .equal(root.<Route>get("route").<Airport>get(
                                 "destinationPlace").<String>get(
                                 "city"),
-                                flightSearchCriteria.getDestinationCity()));
+                                flightSearchCriteria.getDestinationPlace()));
             }
             return criteriaBuilder.and(predicates.toArray(new Predicate[]{}));
         };

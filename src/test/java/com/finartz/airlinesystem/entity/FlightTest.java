@@ -26,7 +26,7 @@ class FlightTest {
         final Flight flight = EntityTestUtility.getFlight();
 
         assertEquals(1L, flight.getId());
-        assertEquals(150, flight.getCapasity());
+        assertEquals(150, flight.getCapacity());
         assertEquals(new BigDecimal(200), flight.getPrice());
         assertNotNull(flight.getFlightDate());
         assertTrue(flight.getEstimatedArrivalTime().isAfter(flight.getFlightDate()));

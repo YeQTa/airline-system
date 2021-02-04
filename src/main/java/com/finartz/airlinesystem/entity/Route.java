@@ -19,6 +19,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -52,6 +54,7 @@ public class Route extends BaseEntity {
     @JoinColumn(name = "DestinationAirportFK", referencedColumnName = "Id", nullable = false)
     private Airport destinationPlace;
 
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "route", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Flight> flights = new ArrayList<>();
 }

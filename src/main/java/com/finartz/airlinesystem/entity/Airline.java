@@ -16,6 +16,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * @author : Yekta Anil AKSOY
@@ -39,6 +41,7 @@ public class Airline extends BaseEntity {
     @NotNull
     private String name;
 
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "airline", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Flight> flights = new ArrayList<>();
 }
