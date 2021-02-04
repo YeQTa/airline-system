@@ -1,5 +1,6 @@
 package com.finartz.airlinesystem.dto.ticket;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TicketPriceDTO {
+public class TicketPriceDTO implements Serializable {
 
     private Long sold;
     private Integer capacity;

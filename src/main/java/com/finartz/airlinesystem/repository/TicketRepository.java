@@ -19,8 +19,8 @@ public interface TicketRepository extends JpaRepository<Ticket, Long>,
 
     Optional<Ticket> findTicketByTicketCode(UUID ticketCode);
 
-    @Query("select new com.finartz.airlinesystem.dto.ticket.TicketPriceDTO(count(t),f.capacity,f.price) from Ticket t inner join Flight f on t.flight.id = f.id where f.id = :flightId and t.ticketStatus = :ticketStatus")
-    TicketPriceDTO findPrizeInfo(@Param("flightId") Long flightId,
+    @Query("select new com.finartz.airlinesystem.dto.ticket.TicketPriceDTO((select count(t) from Ticket t where t.flight.id = :flightId and t.ticketStatus = :ticketStatus),f.capacity,f.price) from Flight f where f.id = :flightId")
+    TicketPriceDTO findPriceInfo(@Param("flightId") Long flightId,
             @Param("ticketStatus") TicketStatus ticketStatus);
 
     @Query("SELECT CASE WHEN COUNT(t) >= f.capacity THEN true ELSE false END FROM Ticket t inner join Flight f on t.flight.id = f.id where f.id = :flightId and t.ticketStatus = :ticketStatus")

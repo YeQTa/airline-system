@@ -78,12 +78,12 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public BigDecimal calculatePrice(Long flightId) {
         final TicketPriceDTO ticketPriceDTO = ticketRepository
-                .findPrizeInfo(flightId, TicketStatus.SOLD);
+                .findPriceInfo(flightId, TicketStatus.SOLD);
         final Integer capacity = ticketPriceDTO.getCapacity();
         final Long sold = ticketPriceDTO.getSold();
         final BigDecimal price = ticketPriceDTO.getPrice();
 
-        final Long numOfTenPercentage = (sold * 10) / (capacity);
+        final Long numOfTenPercentage = ((long) sold * 10) / (capacity);
 
         return price.add(price
                 .multiply(new BigDecimal(numOfTenPercentage * 10).divide(new BigDecimal("100"))));

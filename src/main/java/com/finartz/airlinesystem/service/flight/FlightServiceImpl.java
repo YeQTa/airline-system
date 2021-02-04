@@ -13,7 +13,6 @@ import com.finartz.airlinesystem.service.route.RouteService;
 import com.finartz.airlinesystem.service.ticket.TicketService;
 import com.finartz.airlinesystem.spec.flight.FlightSearchCriteria;
 import com.finartz.airlinesystem.spec.flight.FlightSpecs;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import org.modelmapper.ModelMapper;
@@ -73,10 +72,9 @@ public class FlightServiceImpl implements FlightService {
         Specification<Flight> flightSpecs = FlightSpecs.findFlightByCriterias(flightSearchCriteria);
 
         List<FlightServiceOutput> result = new ArrayList<>();
-        final BigDecimal calculatedPrice = ticketService.calculatePrice(flightServiceInput.getId());
         flightRepository.findAll(flightSpecs)
                 .forEach(x -> {
-                            x.setPrice(calculatedPrice);
+                            x.setPrice(ticketService.calculatePrice(x.getId()));
                             result.add(modelMapper.map(x, FlightServiceOutput.class));
                         }
                 );
