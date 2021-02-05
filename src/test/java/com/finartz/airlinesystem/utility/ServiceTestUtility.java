@@ -5,6 +5,7 @@ import com.finartz.airlinesystem.dto.airline.AirlineServiceOutput;
 import com.finartz.airlinesystem.dto.airport.AirportServiceInput;
 import com.finartz.airlinesystem.dto.flight.FlightServiceInput;
 import com.finartz.airlinesystem.dto.route.RouteServiceInput;
+import com.finartz.airlinesystem.dto.ticket.TicketServiceInput;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -63,5 +64,12 @@ public final class ServiceTestUtility {
         airlineServiceOutput.setName("Pegasus Hava Yolları");
         airlineServiceOutput.setStatus(1);
         return airlineServiceOutput;
+    }
+
+    public static TicketServiceInput getTicketServiceInput() {
+        TicketServiceInput ticketServiceInput = new TicketServiceInput();
+        ticketServiceInput.setCreditCard("1234567890123456");
+        ticketServiceInput.setFlight(1L);
+        return ticketServiceInput;
     }
 }

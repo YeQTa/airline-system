@@ -58,7 +58,7 @@ public final class EntityTestUtility {
         Flight flight = new Flight();
         flight.setId(1L);
         flight.setCapacity(150);
-        flight.setPrice(new BigDecimal(200));
+        flight.setPrice(new BigDecimal("200.00"));
         flight.setFlightDate(now);
         flight.setRoute(getRoute());
         flight.setStatus(1);
